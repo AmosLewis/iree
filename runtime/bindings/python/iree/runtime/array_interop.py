@@ -180,6 +180,9 @@ class DeviceArray(numpy.lib.mixins.NDArrayOperatorsMixin):
         return host_array
 
     def _get_raw_dtype(self):
+        if self._buffer_view.element_type == 620757000:
+            print("_get_raw_dtype HalElementType.FLOAT_8_E4M3_FN == 620757000")
+            return np.dtype(ml_dtypes.float8_e4m3fn)
         return HalElementType.map_to_dtype(self._buffer_view.element_type)
 
     @property
